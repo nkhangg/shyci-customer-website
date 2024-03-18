@@ -81,8 +81,14 @@ export default function Header({ themes = 'light' }: IHeaderProps) {
                     </span>
                 </div>
                 <div className="flex-1 w-full h-full flex items-center justify-center">
-                    <Link href={links.home} className="relative w-[80px] h-[33px]">
-                        <Image fill style={{ objectFit: 'cover' }} src={themes === 'light' ? '/images/lmc_logo.png' : '/images/lmc_white.png'} alt="/images/lmc_logo.png" />
+                    <Link href={links.home} className="relative w-[80px] h-[33px] flex items-center justify-center overflow-hidden rounded p-4 bg-white">
+                        <Image
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            className=""
+                            src={themes === 'light' ? '/images/spyci_logo.png' : '/images/spyci_logo-lagre.jpg'}
+                            alt="/images/lmc_logo.png"
+                        />
                     </Link>
                 </div>
                 <div className=" hidden md:flex items-center justify-end w-1/3">
