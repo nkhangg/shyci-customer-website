@@ -2,6 +2,12 @@
 const nextConfig = {
     images: {
         domains: ['lostmanagementcities.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+            },
+        ],
     },
 };
 
