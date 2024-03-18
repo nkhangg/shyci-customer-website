@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
 import styles from './styles.module.css';
@@ -13,16 +12,17 @@ export default function Product(props: IProductProps) {
                     [styles['product']]: true,
                 })}
             >
-                <img
+                <Image
+                    fill
                     style={{ objectFit: 'cover' }}
-                    className="absolute"
                     src={'https://lostmanagementcities.com/web/product/medium/202311/ba86b20d742ad0d6cc0d21b27713abd6.jpg'}
                     alt="https://lostmanagementcities.com/web/product/medium/202311/ba86b20d742ad0d6cc0d21b27713abd6.jpg"
                 />
-                <img
-                    className={classNames('absolute w-full opacity-0 transition-all ease-linear duration-200', {
+                <Image
+                    className={classNames('relative w-full opacity-0 transition-all ease-linear duration-200', {
                         [styles['product-image']]: true,
                     })}
+                    fill
                     style={{ objectFit: 'cover' }}
                     src={'https://lostmanagementcities.com/web/product/small/202311/2cc23774df41ec468a6a542b24574d5c.jpg'}
                     alt="https://lostmanagementcities.com/web/product/small/202311/2cc23774df41ec468a6a542b24574d5c.jpg"
