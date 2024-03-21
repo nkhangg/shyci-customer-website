@@ -1,6 +1,6 @@
 import { footers } from '@/data/common/data';
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 
 export interface IFooterHomeProps {
     mobile?: boolean;
@@ -10,7 +10,7 @@ export default function FooterHome({ mobile = false }: IFooterHomeProps) {
     return (
         <footer
             className={classNames('', {
-                ['mt-11 flex items-start md:items-center justify-center flex-col']: !!mobile,
+                ['mt-11 flex items-start md:items-center justify-center flex-col']: !mobile,
                 ['mt-11 flex items-start justify-center flex-col md:hidden md:invisible']: mobile,
             })}
         >

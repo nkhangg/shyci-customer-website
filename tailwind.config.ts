@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const HEIGHT_HEADER = '48px';
-const HEIGHT_FOOTER = '48px';
+export const HEIGHT_FOOTER = '48px';
 
 const config: Config = {
     content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/layouts/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -15,14 +15,21 @@ const config: Config = {
             },
             padding: {
                 header: HEIGHT_HEADER,
+                'header-categories': `calc(${HEIGHT_HEADER} + 60px)`,
+                primary: '11px',
+            },
+            margin: {
                 primary: '11px',
             },
             spacing: {
                 header: HEIGHT_HEADER,
+                'spacing-contaner': `calc(${HEIGHT_HEADER} + 20px)`,
             },
             colors: {
                 primary: '#000',
                 'primary-light': '#fff',
+                heart: 'rgb(214,19,85)',
+                'violet-primary': 'rgb(162,155,254)',
             },
             backgroundColor: {
                 primary: '#fff',

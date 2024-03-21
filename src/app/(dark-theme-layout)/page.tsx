@@ -22,10 +22,10 @@ export default function Home() {
     ];
 
     return (
-        <div className="">
+        <main className="py-header">
             {data.map((item) => {
                 return <Conlection key={item.image} data={item} />;
             })}
-        </div>
+        </main>
     );
 }

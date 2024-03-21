@@ -6,7 +6,7 @@ export interface IProductsPageProps {}
 
 export default function ProductsPage(props: IProductsPageProps) {
     return (
-        <div className="px-primary grid grid-cols-4 gap-y-8">
+        <div className="px-primary grid grid-cols-2 lg:grid-cols-4 gap-y-8 mb-[4%]">
             <Product />
             <Product />
             <Product />

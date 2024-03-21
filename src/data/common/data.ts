@@ -1,3 +1,5 @@
+import { links } from '@/contans/routes';
+
 export interface IHeaderItem {
     id: string;
     title: string;
@@ -8,12 +10,12 @@ export const headers = {
         {
             id: 'shop',
             title: 'shop',
-            link: '/',
+            link: links.products.index,
         },
         {
             id: 'archives',
             title: 'archives',
-            link: '/',
+            link: links.products.index,
         },
         {
             id: 'stockists',
@@ -30,12 +32,12 @@ export const headers = {
         {
             id: 'bag',
             title: 'bag',
-            link: '',
+            link: links.orders.basket,
         },
         {
             id: 'search',
             title: 'search',
-            link: '/',
+            link: '/search',
         },
     ],
     rightMobi: [
@@ -43,11 +45,6 @@ export const headers = {
             id: 'bag',
             title: 'bag',
             link: '',
-        },
-        {
-            id: 'search',
-            title: 'search',
-            link: '/',
         },
     ],
 };

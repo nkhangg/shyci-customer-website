@@ -20,3 +20,6 @@ body {
 .a-text {
     @apply hover:underline cursor-pointer px-[10px] font-medium;
 }
+.a-text-non-hover {
+    @apply cursor-pointer px-[10px] font-medium;
+}

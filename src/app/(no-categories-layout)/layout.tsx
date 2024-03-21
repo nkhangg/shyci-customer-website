@@ -1,4 +1,6 @@
 import { Categories, FooterFixed, FooterHome, Header } from '@/components';
+import { categories } from '@/data/common/data';
+import Link from 'next/link';
 import React, { ReactNode } from 'react';
 
 export interface ILightThemeLayoutProps {
@@ -8,8 +10,8 @@ export interface ILightThemeLayoutProps {
 export default function LightThemeLayout({ children }: ILightThemeLayoutProps) {
     return (
         <>
-            <Header categories={true} />
-            <main className="max-w-full py-header-categories my-header">{children}</main>
+            <Header />
+            <main className="max-w-full my-header">{children}</main>
 
             <FooterHome mobile={true} />
             <FooterFixed />

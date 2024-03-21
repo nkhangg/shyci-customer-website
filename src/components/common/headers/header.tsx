@@ -4,22 +4,31 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { IHeaderItem, headers } from '@/data/common/data';
 import Link from 'next/link';
-import { Tags } from '../..';
+import { Categories, Logo, Tags } from '../..';
 import { links } from '@/contans/routes';
-import Drawer from 'react-modern-drawer';
+// import  from 'react-modern-drawer';
 import ShopNav from './shop-nav';
 import ArchivesNav from './archives-nav';
 import { FaBars } from '@meronex/icons/fa/';
 import { AiOutlineClose } from '@meronex/icons/ai/';
+import dynamic from 'next/dynamic';
+import { useAuthStore } from '@/stores/useStateAuth';
+const Drawer = dynamic(() => import('react-modern-drawer'), { ssr: false });
+
 export interface IHeaderProps {
     themes?: 'dark' | 'light';
+    categories?: boolean;
 }
 
-export default function Header({ themes = 'light' }: IHeaderProps) {
+export default function Header({ themes = 'light', categories = false }: IHeaderProps) {
     const dataNav = {
         shop: ShopNav,
         archives: ArchivesNav,
     };
+
+    // zustants
+    const { user } = useAuthStore();
+
     const [openNav, setOpenNav] = useState(false);
     const [dataNavId, setDataNavId] = useState<'shop' | 'archives'>('shop');
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -35,22 +44,38 @@ export default function Header({ themes = 'light' }: IHeaderProps) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataNavId]);
 
-    const renderRightData = useCallback((item: IHeaderItem) => {
-        if (item.id === 'bag') {
+    const renderRightData = useCallback(
+        (item: IHeaderItem) => {
+            if (item.id === 'bag') {
+                return (
+                    <Tags href={item.link} component="span" className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1" key={item.title}>
+                        <span>{item.title}</span>
+                        <span>{0}</span>
+                    </Tags>
+                );
+            }
+
+            if (item.id === 'me') {
+                return (
+                    <Tags
+                        href={!user ? links.auth.login : links.home}
+                        component="span"
+                        className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1"
+                        key={item.title}
+                    >
+                        <span>{item.title}</span>
+                    </Tags>
+                );
+            }
+
             return (
-                <Tags href={item.link} component="span" className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1" key={item.title}>
-                    <span>{item.title}</span>
-                    <span>{0}</span>
+                <Tags href={item.link} component="span" className="hover:underline cursor-pointer px-[10px] font-medium" key={item.title}>
+                    {item.title}
                 </Tags>
             );
-        }
-
-        return (
-            <Tags href={item.link} component="span" className="hover:underline cursor-pointer px-[10px] font-medium" key={item.title}>
-                {item.title}
-            </Tags>
-        );
-    }, []);
+        },
+        [user],
+    );
 
     const handleOpenNav = (item: IHeaderItem) => {
         if (['shop', 'archives'].includes(item.id)) {
@@ -59,9 +84,9 @@ export default function Header({ themes = 'light' }: IHeaderProps) {
         }
     };
     return (
-        <>
-            <header
-                className={classNames('h-header sticky flex top-0 items-center justify-between py-2 px-4 z-40', {
+        <header className="fixed top-0 left-0 right-0 z-40 select-none">
+            <div
+                className={classNames('h-header flex top-0 items-center justify-between py-2 px-4 ', {
                     'bg-primary-dark text-primary-light': themes === 'dark',
                     'bg-primary': themes === 'light',
                 })}
@@ -81,33 +106,26 @@ export default function Header({ themes = 'light' }: IHeaderProps) {
                     </span>
                 </div>
                 <div className="flex-1 w-full h-full flex items-center justify-center">
-                    <Link href={links.home} className="relative w-[80px] h-[33px] flex items-center justify-center overflow-hidden rounded p-4 bg-white">
-                        <Image
-                            fill
-                            style={{ objectFit: 'cover' }}
-                            className=""
-                            src={themes === 'light' ? '/images/spyci_logo.png' : '/images/spyci_logo-lagre.jpg'}
-                            alt="/images/lmc_logo.png"
-                        />
-                    </Link>
+                    <Logo themes={themes} />
                 </div>
                 <div className=" hidden md:flex items-center justify-end w-1/3">
                     {headers.right.map((item) => {
                         return renderRightData(item);
                     })}
                 </div>
-                <div className=" flex w-[40%] md:hidden items-center justify-end">
+                <div className="flex w-[40%] md:hidden items-center justify-end">
                     {headers.rightMobi.map((item) => {
                         return renderRightData(item);
                     })}
                 </div>
-            </header>
+            </div>
+
+            {categories && <Categories />}
 
             {openNav && (
                 <div
                     onMouseLeave={async (e) => {
                         e.stopPropagation();
-                        // await delay(400);
                         setOpenNav(false);
                     }}
                     className={classNames(' w-screen md:w-[400px] z-40 fixed top-header left-0 bottom-0  py-10 px-4 text-[12px]', {
@@ -137,6 +155,6 @@ export default function Header({ themes = 'light' }: IHeaderProps) {
                     </div>
                 </div>
             </Drawer>
-        </>
+        </header>
     );
 }
