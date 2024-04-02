@@ -49,6 +49,11 @@ export const headers = {
     ],
 };
 
+export const customerService = {
+    title: 'CUSTOMER SERVICES: +82 02 511 7288',
+    link: '',
+};
+
 export const footers = {
     footer: [
         {
@@ -89,16 +94,26 @@ export const footers = {
             title: 'LEE@LAYERCOLTD.COM',
             link: '',
         },
-        {
-            title: 'CUSTOMER SERVICES: +82 02 511 7288',
-            link: '',
-        },
+        customerService,
         {
             title: '3F, 139, DOSAN-DAERO, GANGNAM-GU, SEOUL, REPUBLIC OF KOREA',
             link: '',
         },
     ],
 };
+
+export const archives = [
+    {
+        title: 'home',
+        link: links.home,
+        hightlight: true,
+    },
+    {
+        title: 'shop',
+        link: links.products.index,
+        hightlight: false,
+    },
+];
 
 export const categories = [
     {

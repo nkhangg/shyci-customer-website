@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { IUser } from '../../interface';
 
 interface IStateAuth {
     user: null | IUser;

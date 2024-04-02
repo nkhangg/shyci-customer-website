@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { DetailedHTMLProps, ReactNode } from 'react';
+import React, { DetailedHTMLProps, ReactNode, forwardRef } from 'react';
 
 export interface ITextAreaProps extends DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
     label?: string;
@@ -8,7 +8,7 @@ export interface ITextAreaProps extends DetailedHTMLProps<React.TextareaHTMLAttr
     flagRequired?: boolean;
 }
 
-export default function TextArea({ icon, message, label, flagRequired, ...props }: ITextAreaProps) {
+const TextArea = forwardRef(({ icon, message, label, flagRequired, ...props }: ITextAreaProps, ref: any) => {
     return (
         <div className="flex flex-col">
             {label && (
@@ -24,15 +24,20 @@ export default function TextArea({ icon, message, label, flagRequired, ...props 
             >
                 {icon && <div className="absolute left-4 flex items-center justify-center text-[20px]">{icon}</div>}
                 <textarea
-                    {...props}
+                    ref={ref}
                     rows={props.rows || 6}
                     className={classNames('outline-none w-full h-full p-4 text-sm resize-none', {
                         ['pl-14']: !!icon,
                         ['pl-4']: !icon,
                     })}
+                    {...props}
                 />
             </div>
             {message && <small className="mt-1 text-heart font-medium pl-1">{message}</small>}
         </div>
     );
-}
+});
+
+TextArea.displayName = 'TextArea';
+
+export default TextArea;

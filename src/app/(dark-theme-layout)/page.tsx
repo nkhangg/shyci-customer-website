@@ -1,31 +1,29 @@
-import { Conlection } from '@/components';
+'use client';
+import { Conlection, NotFound, PrimaryLoading } from '@/components';
+import useGetCollection from '@/hooks/useGetConllection';
 import Image from 'next/image';
 
 export default function Home() {
-    const data = [
-        {
-            image: 'https://lostmanagementcities.com/img/main/SS24-6-PC.jpg',
-            title: 'SS24 6TH release',
-        },
-        {
-            image: 'https://lostmanagementcities.com/img/main/SS24-WP-PC2.jpg',
-            title: "SS24 Women's PAck 1st release",
-        },
-        {
-            image: 'https://lostmanagementcities.com/img/main/SS24-VLT-PC.jpg',
-            title: 'SS24 Valentine pack release',
-        },
-        {
-            image: 'https://lostmanagementcities.com/img/main/FW23_AVRX_PC.jpg',
-            title: 'LMC. x AVIREX RELEASE',
-        },
-    ];
+    const { data, isFetched, isLoading, isFetching, lastPostRef } = useGetCollection();
 
     return (
         <main className="py-header">
-            {data.map((item) => {
-                return <Conlection key={item.image} data={item} />;
-            })}
+            {data?.length > 0 &&
+                data.map((item) => {
+                    return (
+                        <div className="w-full h-full" key={item.id} ref={lastPostRef}>
+                            <Conlection key={item.image} data={item} />
+                        </div>
+                    );
+                })}
+
+            {(isLoading || isFetching) && (
+                <div className="flex min-h-screen items-center justify-center">
+                    <PrimaryLoading />
+                </div>
+            )}
+
+            {(!data || data.length <= 0) && isFetched && <NotFound />}
         </main>
     );
 }

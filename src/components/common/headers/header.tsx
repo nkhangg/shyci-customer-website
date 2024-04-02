@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { IHeaderItem, headers } from '@/data/common/data';
@@ -13,6 +13,7 @@ import { FaBars } from '@meronex/icons/fa/';
 import { AiOutlineClose } from '@meronex/icons/ai/';
 import dynamic from 'next/dynamic';
 import { useAuthStore } from '@/stores/useStateAuth';
+import { CartContextProvider } from '../providers/contexts/cart-context';
 const Drawer = dynamic(() => import('react-modern-drawer'), { ssr: false });
 
 export interface IHeaderProps {
@@ -28,6 +29,8 @@ export default function Header({ themes = 'light', categories = false }: IHeader
 
     // zustants
     const { user } = useAuthStore();
+
+    const { cart } = useContext(CartContextProvider);
 
     const [openNav, setOpenNav] = useState(false);
     const [dataNavId, setDataNavId] = useState<'shop' | 'archives'>('shop');
@@ -50,19 +53,14 @@ export default function Header({ themes = 'light', categories = false }: IHeader
                 return (
                     <Tags href={item.link} component="span" className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1" key={item.title}>
                         <span>{item.title}</span>
-                        <span>{0}</span>
+                        <span>{cart ? cart.length : 0}</span>
                     </Tags>
                 );
             }
 
             if (item.id === 'me') {
                 return (
-                    <Tags
-                        href={!user ? links.auth.login : links.home}
-                        component="span"
-                        className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1"
-                        key={item.title}
-                    >
+                    <Tags href={links.auth.profile} component="span" className="hover:underline cursor-pointer px-[10px] font-medium flex items-center gap-1" key={item.title}>
                         <span>{item.title}</span>
                     </Tags>
                 );
@@ -74,7 +72,7 @@ export default function Header({ themes = 'light', categories = false }: IHeader
                 </Tags>
             );
         },
-        [user],
+        [user, cart],
     );
 
     const handleOpenNav = (item: IHeaderItem) => {

@@ -1,6 +1,5 @@
-import { AiOutlineMail } from '@meronex/icons/ai';
 import cls from 'classnames';
-import React, { DetailedHTMLProps, ReactNode } from 'react';
+import React, { DetailedHTMLProps, ReactNode, forwardRef } from 'react';
 
 export interface IInputProps extends DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     label?: string;
@@ -11,9 +10,10 @@ export interface IInputProps extends DetailedHTMLProps<React.InputHTMLAttributes
     classNames?: {
         input?: string;
     };
+    rightIcon?: ReactNode;
 }
 
-export default function Input({ icon, message, label, flagRequired, defaultMargin = true, classNames, ...props }: IInputProps) {
+const Input = forwardRef(({ icon, message, label, flagRequired, defaultMargin = true, classNames, rightIcon, ...props }: IInputProps, ref: any) => {
     return (
         <div className="flex flex-col">
             {label && (
@@ -30,15 +30,24 @@ export default function Input({ icon, message, label, flagRequired, defaultMargi
             >
                 {icon && <div className="absolute left-4 flex items-center justify-center text-[20px]">{icon}</div>}
                 <input
+                    autoComplete="off"
+                    ref={ref}
                     {...props}
-                    className={cls('outline-none w-full h-full', {
+                    className={cls('outline-none w-full h-full ', {
                         ['pl-14']: !!icon,
                         ['pl-0']: !icon,
-                        [classNames?.input || 'text-sm']: !!classNames?.input,
+                        [classNames?.input || '']: !!classNames?.input,
+                        ['text-[15px]']: !classNames?.input,
                     })}
                 />
+
+                {rightIcon && <div className="absolute top-0 bottom-0 flex items-center right-0 p-2 text-md">{rightIcon}</div>}
             </div>
             {message && <small className="mt-1 text-heart font-medium pl-1">{message}</small>}
         </div>
     );
-}
+});
+
+Input.displayName = 'Input';
+
+export default Input;

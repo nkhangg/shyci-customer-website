@@ -1,12 +1,13 @@
 import classNames from 'classnames';
 import React, { DetailedHTMLProps } from 'react';
+import { ISize } from '../../../interface';
 
 export interface ISizeButtonProps extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    title: string;
+    data: ISize;
     active?: boolean;
 }
 
-export default function SizeButton({ title, active, ...props }: ISizeButtonProps) {
+export default function SizeButton({ data, active, ...props }: ISizeButtonProps) {
     return (
         <button
             {...props}
@@ -16,7 +17,7 @@ export default function SizeButton({ title, active, ...props }: ISizeButtonProps
                 ['border border-dashed']: !active,
             })}
         >
-            <span className="uppercase font-medium">{title}</span>
+            <span className="uppercase font-medium">{data.name}</span>
         </button>
     );
 }

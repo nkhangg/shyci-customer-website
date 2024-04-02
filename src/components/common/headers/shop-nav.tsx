@@ -1,13 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
+'use client';
 import classNames from 'classnames';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { links } from '@/contans/routes';
+import { useGetCategories } from '@/hooks';
 
 export interface IShopNavProps {
     drawer?: boolean;
 }
 
 export default function ShopNav({ drawer = false }: IShopNavProps) {
+    const { dataMemoCategories, dataMemoProducts } = useGetCategories();
+
     return (
         <div
             className={classNames('', {
@@ -15,24 +20,14 @@ export default function ShopNav({ drawer = false }: IShopNavProps) {
             })}
         >
             <ul className="px-[10px] flex flex-col gap-5 ">
-                <li className="text-red-500">SPRING CAMPAIGN</li>
-
                 <li className="flex flex-col gap-1">
-                    <Link href={''} className="hover:underline ">
-                        LMC X AVIREX
-                    </Link>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                </li>
-                <li className="flex flex-col gap-1">
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
+                    {dataMemoCategories.map((item) => {
+                        return (
+                            <Link key={item.id} href={links.products.queriesCategories(item, 'categories')} className="hover:underline ">
+                                {item.name}
+                            </Link>
+                        );
+                    })}
                 </li>
             </ul>
 
@@ -41,47 +36,20 @@ export default function ShopNav({ drawer = false }: IShopNavProps) {
                     'px-[10px]': !drawer,
                 })}
             >
-                <span>ranking</span>
+                <span>new</span>
                 <div className="grid grid-cols-3 gap-2 px-[10px]">
-                    <div className="flex flex-col items-center text-center line-clamp-3">
-                        <div className="w-full aspect-[2/3] relative mb-2">
-                            <Image
-                                style={{ objectFit: 'cover' }}
-                                fill
-                                src={'https://lostmanagementcities.com/web/product/medium/202303/390bcbd16547c0d76af0ed1528dbe61d.jpg'}
-                                alt="a"
-                            />
-                        </div>
-                        <Link href={''} className="hover:underline">
-                            THORNS WIZARD COACH JACKET beige
-                        </Link>
-                    </div>
-                    <div className="flex flex-col items-center text-center line-clamp-3">
-                        <div className="w-full aspect-[2/3] relative mb-2">
-                            <Image
-                                style={{ objectFit: 'cover' }}
-                                fill
-                                src={'https://lostmanagementcities.com/web/product/medium/202303/390bcbd16547c0d76af0ed1528dbe61d.jpg'}
-                                alt="a"
-                            />
-                        </div>
-                        <Link href={''} className="hover:underline">
-                            THORNS WIZARD COACH JACKET beige
-                        </Link>
-                    </div>
-                    <div className="flex flex-col items-center text-center line-clamp-3">
-                        <div className="w-full aspect-[2/3] relative mb-2">
-                            <Image
-                                style={{ objectFit: 'cover' }}
-                                fill
-                                src={'https://lostmanagementcities.com/web/product/medium/202303/390bcbd16547c0d76af0ed1528dbe61d.jpg'}
-                                alt="a"
-                            />
-                        </div>
-                        <Link href={''} className="hover:underline">
-                            THORNS WIZARD COACH JACKET beige
-                        </Link>
-                    </div>
+                    {dataMemoProducts.map((item) => {
+                        return (
+                            <div key={item.id} className="flex flex-col items-center text-center line-clamp-3">
+                                <div className="w-full aspect-[2/3] relative mb-2">
+                                    <img style={{ objectFit: 'cover' }} src={item?.images[0]?.name} alt={item?.images[0]?.name} />
+                                </div>
+                                <Link href={links.products.detail(item.id, item.name)} className="hover:underline">
+                                    {item.name}
+                                </Link>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

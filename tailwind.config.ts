@@ -18,6 +18,11 @@ const config: Config = {
                 'header-categories': `calc(${HEIGHT_HEADER} + 60px)`,
                 primary: '11px',
             },
+            gridTemplateColumns: {
+                // Simple 16 column grid
+                'col-product-detail-des': '700px 1fr',
+                'col-product-detail-tab': '600px 1fr',
+            },
             margin: {
                 primary: '11px',
             },

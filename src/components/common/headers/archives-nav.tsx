@@ -1,5 +1,6 @@
+import { archives } from '@/data/common/data';
 import Link from 'next/link';
-import * as React from 'react';
+import React from 'react';
 
 export interface IArchivesNavProps {}
 
@@ -8,11 +9,13 @@ export default function ArchivesNav(props: IArchivesNavProps) {
         <div>
             <ul className="px-[10px] flex flex-col gap-5">
                 <li className="flex flex-col gap-1">
-                    <Link href={''} className="hover:underline ">
-                        LMC X AVIREX
-                    </Link>
-                    <span>LMC X AVIREX</span>
-                    <span>LMC X AVIREX</span>
+                    {archives.map((item) => {
+                        return (
+                            <Link key={item.title} href={item.link} className="hover:underline ">
+                                {item.title}
+                            </Link>
+                        );
+                    })}
                 </li>
             </ul>
         </div>

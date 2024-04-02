@@ -15,6 +15,18 @@ export { default as ProductBasket } from './products/product-basket';
 //buttons
 export { default as SizeButton } from './buttons/size-button';
 export { default as Button } from './buttons/button';
+export { default as ButtonGoogle } from './buttons/colops/button-google';
 
 // slide
 export { default as ProducDetailSlide } from './slides/product-detail-slide';
+
+// loading
+
+export { default as PrimaryLoading } from './common/loadings/primary-loading';
+
+// erors
+export { default as NotFound } from './common/erros/not-found';
+
+export { default as DropdownProvince } from './inputs/colops/dropdown-province';
+export { default as DropdownDistrict } from './inputs/colops/dropdown-district';
+export { default as DropdownWard } from './inputs/colops/dropdown-ward';
