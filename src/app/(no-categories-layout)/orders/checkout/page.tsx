@@ -114,6 +114,7 @@ export default function CheckoutPage(props: ICheckoutPageProps) {
 
     const handleOrders = async (values: IOrderInfo) => {
         if (validate()) return;
+        if (validateItem()) return;
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
@@ -209,10 +210,6 @@ export default function CheckoutPage(props: ICheckoutPageProps) {
         setDivision({ ...division, province: item.data || null });
     };
 
-    const handleSetIsRule = (e: ChangeEvent<HTMLInputElement>) => {
-        setIsRule(e.target.checked);
-    };
-
     const handleSetDistrict = (item: IDropdownData<IDistrict>) => {
         if (refWard.current && refWard.current.reset) {
             if (item.data?.district_id !== division.district?.district_id) {
@@ -222,8 +219,19 @@ export default function CheckoutPage(props: ICheckoutPageProps) {
         setDivision({ ...division, district: item.data || null });
     };
 
+    const handleSetIsRule = (e: ChangeEvent<HTMLInputElement>) => {
+        setIsRule(e.target.checked);
+    };
+
     const validate = () => {
         const valid: boolean[] = [];
+
+        if (user) {
+            if (user.province && user.district && user.address && user.ward) {
+                return false;
+            }
+        }
+
         if (!division.province) {
             setError('province', { message: 'Bạn chưa chọn Tỉnh/Thành phố' });
             valid.push(true);
@@ -238,6 +246,12 @@ export default function CheckoutPage(props: ICheckoutPageProps) {
             valid.push(true);
         }
 
+        return valid.length > 0;
+    };
+
+    const validateItem = () => {
+        const valid: boolean[] = [];
+
         if (!itemChecked.length) {
             setAlert('Không tìm thấy sản phẩm');
             valid.push(true);
@@ -250,7 +264,6 @@ export default function CheckoutPage(props: ICheckoutPageProps) {
         } else {
             setAlert(null);
         }
-
         return valid.length > 0;
     };
 

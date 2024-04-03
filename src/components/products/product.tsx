@@ -20,7 +20,7 @@ export default function Product({ data }: IProductProps) {
                     })}
                 >
                     <Image fill style={{ objectFit: 'cover' }} src={data.images[0]?.name} alt={data.images[0]?.name} />
-                    {data.images.length > 2 && (
+                    {data.images.length >= 2 && (
                         <Image
                             className={classNames('relative w-full opacity-0 transition-all ease-linear duration-200', {
                                 [styles['product-image']]: true,

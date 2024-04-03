@@ -102,6 +102,7 @@ interface IFilterOrder extends IFilter {
 interface IOrder {
     createdAt: string;
     id: number;
+    uuid: string;
     fullname: string;
     phone: string;
     email: string;
@@ -116,7 +117,6 @@ interface IOrder {
 }
 
 interface IDOrder extends IOrder {
-    customer: Customer;
     data: IOrderDetail[];
     detail: IDetailInfoOrder | null;
 }
@@ -263,4 +263,18 @@ interface IOrderInfo {
 interface IOrderRequest {
     info: IOrderInfo;
     data: ICartData[];
+}
+
+interface ICustomerRequest {
+    fullname?: string;
+    phone?: string;
+    province?: string;
+    district?: string;
+    ward?: string;
+}
+
+interface IChangePassRequest {
+    password: string;
+    newPass: string;
+    comfirmPass: string;
 }

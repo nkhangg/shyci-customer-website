@@ -127,7 +127,7 @@ export default function ProductDetail({ params }: IProductDetailProps) {
                         </div>
 
                         <div className="w-full lg:hidden">
-                            <ProducDetailSlide />
+                            <ProducDetailSlide data={memoData.images} />
                         </div>
                     </>
                     <div className=" w-full lg:w-2/6 text-[1rem] py-4 px-primary lg:px-0">

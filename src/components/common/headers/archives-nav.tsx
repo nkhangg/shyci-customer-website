@@ -11,7 +11,7 @@ export default function ArchivesNav(props: IArchivesNavProps) {
                 <li className="flex flex-col gap-1">
                     {archives.map((item) => {
                         return (
-                            <Link key={item.title} href={item.link} className="hover:underline ">
+                            <Link key={item.title} href={item.link} className="hover:underline font-medium">
                                 {item.title}
                             </Link>
                         );

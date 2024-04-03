@@ -17,11 +17,11 @@ export const headers = {
             title: 'archives',
             link: links.products.index,
         },
-        {
-            id: 'stockists',
-            title: 'stockists',
-            link: '/',
-        },
+        // {
+        //     id: 'stockists',
+        //     title: 'stockists',
+        //     link: '/',
+        // },
     ],
     right: [
         {
@@ -50,8 +50,8 @@ export const headers = {
 };
 
 export const customerService = {
-    title: 'CUSTOMER SERVICES: +82 02 511 7288',
-    link: '',
+    title: 'CUSTOMER SERVICES: 0961070334',
+    link: '/',
 };
 
 export const footers = {
@@ -62,14 +62,14 @@ export const footers = {
         },
         {
             title: 'PRIVACY / COOKIES',
-            link: '/',
+            link: links.privacy,
+        },
+        {
+            title: 'Rules / service',
+            link: links.rules,
         },
         {
             title: 'INSTAGRAM',
-            link: '/',
-        },
-        {
-            title: 'YOUTUBE',
             link: '/',
         },
         {
@@ -82,23 +82,23 @@ export const footers = {
         },
     ],
     infoAndConpyright: [
+        // {
+        //     title: 'REGISTRATION: 261-81-01530',
+        //     link: '',
+        // },
         {
-            title: 'REGISTRATION: 261-81-01530',
-            link: '',
+            title: 'E-COMMERCE PERMIT: 2024-Shyci',
+            link: '/',
         },
         {
-            title: 'E-COMMERCE PERMIT: 2013-서울강남-02629',
-            link: '',
-        },
-        {
-            title: 'LEE@LAYERCOLTD.COM',
-            link: '',
+            title: 'builenguyen1203@gmail.com',
+            link: '/',
         },
         customerService,
-        {
-            title: '3F, 139, DOSAN-DAERO, GANGNAM-GU, SEOUL, REPUBLIC OF KOREA',
-            link: '',
-        },
+        // {
+        //     title: '3F, 139, DOSAN-DAERO, GANGNAM-GU, SEOUL, REPUBLIC OF KOREA',
+        //     link: '',
+        // },
     ],
 };
 

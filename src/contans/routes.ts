@@ -14,7 +14,7 @@ export const links = {
         queries: (name: string, key?: string) => {
             return linksDefault.products + `?${key}=${name.replaceAll(' ', '-')}`;
         },
-        queriesCategories: (data: IDropdownData, key?: string) => {
+        queriesCategories: (data: IDropdownData<any>, key?: string) => {
             return linksDefault.products + `?${key}=${data.name.replaceAll(' ', '-')}&id=${data.id}`;
         },
     },
@@ -29,6 +29,9 @@ export const links = {
     orders: {
         basket: '/orders/basket',
         checkout: '/orders/checkout',
+        orderDetail: (id: string) => {
+            return '/orders/detail/' + id;
+        },
     },
     rules: '/rules',
     privacy: '/privacy-policy',

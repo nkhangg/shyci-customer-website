@@ -72,6 +72,7 @@ export default function Header({ themes = 'light', categories = false }: IHeader
                 </Tags>
             );
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [user, cart],
     );
 
@@ -145,7 +146,7 @@ export default function Header({ themes = 'light', categories = false }: IHeader
                     <ShopNav drawer={true} />
                     <span className="py-4 font-medium">ARCHIVE</span>
                     <ArchivesNav />
-                    <span className="py-4 font-medium hover:underline">STOCKISTS</span>
+                    {/* <span className="py-4 font-medium hover:underline">STOCKISTS</span> */}
                     <div className="mt-16 flex flex-col gap-1">
                         {headers.right.map((item) => {
                             return renderRightData(item);

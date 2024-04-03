@@ -3,18 +3,15 @@ import React, { useMemo, useState } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import classNames from 'classnames';
+import { IImageProduct } from '../../../interface';
 
-export interface IProductDetailSlideProps {}
+export interface IProductDetailSlideProps {
+    data: IImageProduct[];
+}
 
-export default function ProductDetailSlide(props: IProductDetailSlideProps) {
+export default function ProductDetailSlide({ data }: IProductDetailSlideProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-
-    const data = [
-        'http://zwin.io/react/stoon/assets/img/arrival/1.png',
-        'http://zwin.io/react/stoon/assets/img/arrival/1.png',
-        'http://zwin.io/react/stoon/assets/img/arrival/1.png',
-    ];
 
     const [sliderRef, instanceRef] = useKeenSlider({
         slideChanged(slider) {
@@ -39,7 +36,7 @@ export default function ProductDetailSlide(props: IProductDetailSlideProps) {
                     key={index}
                 >
                     <figure className="w-full h-full">
-                        <Image style={{ objectFit: 'cover' }} src={value} alt={value} fill />
+                        <Image style={{ objectFit: 'cover' }} src={value.name} alt={value.name} fill />
                     </figure>
                 </div>
             )),

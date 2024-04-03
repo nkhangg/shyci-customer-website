@@ -23,10 +23,8 @@ export default function Categories(props: ICategoriesProps) {
         const handleScrolling = () => {
             var scroll = window.scrollY;
             if (scroll > position) {
-                console.log('scrolling downwards');
                 setIsDownScrolling(true);
             } else {
-                console.log('scrolling upwards');
                 setIsDownScrolling(false);
             }
             position = scroll;
@@ -56,7 +54,7 @@ export default function Categories(props: ICategoriesProps) {
                     <Link
                         className={classNames('a-text py-2', {
                             ['text-red-600']: false,
-                            ['underline']: name === item.id,
+                            ['underline']: name == item.id,
                         })}
                         href={links.products.queriesCategories(item, 'categories')}
                         key={item.id}

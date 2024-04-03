@@ -27,6 +27,23 @@ export { default as PrimaryLoading } from './common/loadings/primary-loading';
 // erors
 export { default as NotFound } from './common/erros/not-found';
 
-export { default as DropdownProvince } from './inputs/colops/dropdown-province';
-export { default as DropdownDistrict } from './inputs/colops/dropdown-district';
-export { default as DropdownWard } from './inputs/colops/dropdown-ward';
+// colaps
+// division
+export { default as DropdownProvince } from './inputs/colops/divisions/dropdown-province';
+export { default as DropdownDistrict } from './inputs/colops/divisions/dropdown-district';
+export { default as DropdownWard } from './inputs/colops/divisions/dropdown-ward';
+
+// settings
+export { default as SettingItem } from './inputs/colops/settings/setting-item';
+
+// comfirm ui
+export { default as ComfirmUiDefault } from './inputs/colops/comfirm-ui/comfirm-default';
+
+// pages
+// orders
+export { default as OrderItem } from './pages/orders/order-item';
+// profiles
+export { default as OrderInfo } from './pages/profiles/orders-info';
+
+// modals
+export { default as ModalBase } from './modals/modal-base';

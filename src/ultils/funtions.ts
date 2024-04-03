@@ -1,4 +1,4 @@
-import { ISize } from '../../interface';
+import { IOrder, ISize, IUser } from '../../interface';
 
 export const max_size = 1024 * 1024 * 2;
 export const max_files = 6;
@@ -123,4 +123,13 @@ export const generateKeywords = (displayName: string) => {
     }, []);
 
     return keywords;
+};
+
+export const buildAddress = (user?: IUser | null) => {
+    if (!user || !user.address || !user.province || !user.district || !user.ward) return null;
+    return `${user.address}, ${user.ward}, ${user.district}, ${user.province}`;
+};
+export const buildAddressOrder = (data?: IOrder | null) => {
+    if (!data || !data.address || !data.province || !data.district || !data.ward) return null;
+    return `${data.address}, ${data.ward}, ${data.district}, ${data.province}`;
 };

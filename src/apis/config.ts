@@ -1,4 +1,5 @@
 import { keysLocalStorage } from '@/ultils/local-storege';
+import appService from '@/ultils/services/app-service';
 import axios from 'axios';
 
 const axiosConfig = axios.create({
@@ -51,7 +52,7 @@ axiosConfig.interceptors.response.use(
             try {
                 const res = await axiosConfig({
                     method: 'POST',
-                    url: 'auths/refresh-token?type=admin',
+                    url: 'auths/refresh-token',
                     data: {
                         refreshToken: refreshToken,
                     },
@@ -65,11 +66,13 @@ axiosConfig.interceptors.response.use(
 
                     config.headers.Authorization = `Bearer ${token}`;
 
-                    console.log('reset token is running...');
                     return axiosConfig(config);
                 }
             } catch (error) {
+                console.log(error);
                 // authClient.signOut();
+                // window.location.reload();
+                appService.handleLogout();
                 window.location.reload();
                 return Promise.reject(error);
             }

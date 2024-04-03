@@ -21,7 +21,7 @@ export default function useGetCategories() {
     const dataMemoCategories = useMemo(() => {
         if (!categories || !categories.data) return [];
 
-        return categories.data.data as IDropdownData[];
+        return categories.data.data as IDropdownData<any>[];
     }, [categories]);
 
     const dataMemoProducts = useMemo(() => {

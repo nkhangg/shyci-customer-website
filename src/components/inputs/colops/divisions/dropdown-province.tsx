@@ -1,12 +1,12 @@
 'use client';
 import Tippy from '@tippyjs/react/headless';
 import React, { ChangeEvent, forwardRef, memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import Input, { IInputProps } from '../input';
+import Input, { IInputProps } from '../../input';
 import { AiOutlineDown, AiOutlineUp } from '@meronex/icons/ai';
 import { useQuery } from '@tanstack/react-query';
 import { getProvince } from '@/apis/handlers/division';
-import Dropdown from '../dropdown';
-import { IDropdownData, IProvince } from '../../../../interface';
+import Dropdown from '../../dropdown';
+import { IDropdownData, IProvince } from '../../../../../interface';
 
 export interface IDropdownProvinceProps extends IInputProps {
     onClickItem?: (item: IDropdownData<IProvince>) => void;
